@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misty Robot LED Change Request</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <script>
+        // Declare a constant variable.
+        // Set its value to your robot's IP address.
+        const ip = "192.168.12.156"
+
+        // Create a data object to send with the POST request.
+        // Set values for each RGB color property.
+        let data = {
+            "red": 223,
+            "green": 50,
+            "blue": 255
+        };
+
+        // Call axios.post(). Pass the URL of the ChangeLED
+        // endpoint as the first parameter and the data object
+        // as the second.
+        axios.post("http://" + ip + "/api/led", data)
+
+        // Use a then() method after calling axios.post().
+        // Pass in a callback function to interpret the return
+        // values of the call and to print a message to the console
+        // indicating the request's success.
+        axios.post("http://" + ip + "/api/led", data)
+            .then(function (response) {
+            console.log(`ChangeLED was a ${response.data.status}`);
+        })
+        .catch(function (error) {
+            console.log(`There was an error with the request ${error}`);
+        })
+
+
+    </script>
+</body>
+</html>
